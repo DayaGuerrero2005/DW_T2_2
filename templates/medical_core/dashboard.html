@@ -6,42 +6,46 @@
   <title>MediSPL-UNEMI | Panel de Triaje ({{ variant_code }})</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', Arial, sans-serif; background: #ffffff; color: #000000; }
-    .navbar { background: #262626; color: #ffffff; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #000000; }
-    .brand { font-size: 15.5px; font-weight: 700; color: #ffffff; }
-    .brand span { color: #d4d4d4; font-size: 13px; font-weight: 400; margin-left: 8px; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f4f6f8; color: #111827; }
+    .navbar { background: #162a45; color: #ffffff; padding: 13px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0f1e33; }
+    .brand { font-size: 16px; font-weight: 700; color: #ffffff; letter-spacing: 0.2px; }
+    .brand span { color: #cbd5e1; font-size: 13px; font-weight: 400; margin-left: 8px; }
     .nav-badges { display: flex; align-items: center; gap: 10px; }
-    .variant-pill { background: #e5e5e5; color: #000000; padding: 4px 10px; border-radius: 3px; font-size: 11.5px; font-weight: 700; border: 1px solid #000000; }
-    .notif-pill-on { background: #ffffff; color: #000000; padding: 4px 10px; border-radius: 3px; font-size: 11.5px; font-weight: 700; border: 1px solid #000000; }
-    .notif-pill-off { background: #404040; color: #d4d4d4; padding: 4px 10px; border-radius: 3px; font-size: 11.5px; }
-    .layout { display: grid; grid-template-columns: 230px 1fr; min-height: calc(100vh - 50px); }
-    .sidebar { background: #f2f2f2; color: #000000; padding: 18px 14px; display: flex; flex-direction: column; gap: 6px; border-right: 1px solid #8c8c8c; }
-    .nav-sec { font-size: 11px; text-transform: uppercase; color: #000000; font-weight: 700; margin-top: 10px; margin-bottom: 4px; border-bottom: 1px solid #a6a6a6; padding-bottom: 3px; }
-    .nav-item { padding: 8px 10px; border-radius: 3px; font-size: 12.5px; background: #ffffff; color: #000000; text-decoration: none; display: block; border: 1px solid #bfbfbf; }
-    .nav-item.active { background: #d9d9d9; color: #000000; font-weight: 700; border: 1px solid #000000; }
-    .nav-item.opt-on { background: #e6e6e6; border-left: 4px solid #000000; color: #000000; font-weight: 700; }
-    .nav-item.opt-off { background: #f5f5f5; color: #737373; text-decoration: line-through; border: 1px dashed #bfbfbf; }
-    .content { padding: 20px 26px; display: flex; flex-direction: column; justify-content: space-between; background: #ffffff; }
-    .top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid #000000; gap: 14px; }
-    .top-row h2 { font-size: 17px; font-weight: 700; color: #000000; }
-    .status-chip { background: #f2f2f2; border: 1px solid #000000; color: #000000; padding: 6px 11px; border-radius: 3px; font-size: 11.5px; font-weight: 700; }
+    .variant-pill { background: #2c5282; color: #ffffff; padding: 4px 11px; border-radius: 4px; font-size: 11.5px; font-weight: 700; border: 1px solid #4a6fa5; }
+    .notif-pill-on { background: #7f1d1d; color: #ffffff; padding: 4px 11px; border-radius: 4px; font-size: 11.5px; font-weight: 700; border: 1px solid #991b1b; }
+    .notif-pill-off { background: #334155; color: #cbd5e1; padding: 4px 11px; border-radius: 4px; font-size: 11.5px; }
+    .layout { display: grid; grid-template-columns: 235px 1fr; min-height: calc(100vh - 50px); }
+    .sidebar { background: #1e293b; color: #e2e8f0; padding: 18px 14px; display: flex; flex-direction: column; gap: 6px; border-right: 1px solid #0f172a; }
+    .nav-sec { font-size: 10.5px; text-transform: uppercase; color: #94a3b8; font-weight: 700; margin-top: 10px; margin-bottom: 4px; letter-spacing: 0.5px; }
+    .nav-item { padding: 8px 11px; border-radius: 4px; font-size: 12.5px; background: #273549; color: #f1f5f9; text-decoration: none; display: block; border: 1px solid #334155; }
+    .nav-item.active { background: #2b4c7e; color: #ffffff; font-weight: 700; border-left: 4px solid #93c5fd; }
+    .nav-item.opt-on { background: #1f4e46; border-left: 4px solid #5eead4; color: #f0fdfa; font-weight: 600; }
+    .nav-item.opt-off { background: #1e293b; color: #64748b; text-decoration: line-through; border: 1px dashed #334155; }
+    .content { padding: 20px 26px; display: flex; flex-direction: column; justify-content: space-between; background: #f4f6f8; }
+    .top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1.5px solid #cbd5e1; gap: 14px; }
+    .top-row h2 { font-size: 17px; font-weight: 700; color: #0f172a; }
+    .status-chip-on { background: #e6f4ea; border: 1px solid #2e7d32; color: #1b5e20; padding: 6px 11px; border-radius: 4px; font-size: 11.5px; font-weight: 700; }
+    .status-chip-off { background: #f1f5f9; border: 1px solid #64748b; color: #334155; padding: 6px 11px; border-radius: 4px; font-size: 11.5px; font-weight: 700; }
     .btn-group { display: flex; align-items: center; gap: 8px; }
-    .btn { padding: 7px 13px; border-radius: 3px; text-decoration: none; font-size: 12px; font-weight: 700; display: inline-block; border: 1px solid #000000; }
-    .btn-pdf { background: #262626; color: #ffffff; }
-    .btn-csv { background: #e5e5e5; color: #000000; }
-    .alert-box { background: #f2f2f2; border-left: 4px solid #000000; border-top: 1px solid #737373; border-right: 1px solid #737373; border-bottom: 1px solid #737373; padding: 10px 16px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; color: #000000; }
+    .btn { padding: 7px 13px; border-radius: 4px; text-decoration: none; font-size: 12px; font-weight: 700; display: inline-block; color: #ffffff; }
+    .btn-pdf { background: #162a45; border: 1px solid #0f1e33; }
+    .btn-csv { background: #1f5f54; border: 1px solid #16443c; }
+    .alert-box { background: #fdf8f6; border-left: 4px solid #8c2d19; border-top: 1px solid #d6c7c2; border-right: 1px solid #d6c7c2; border-bottom: 1px solid #d6c7c2; padding: 10px 16px; border-radius: 4px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; color: #1f2937; }
     .alert-box ul { margin-top: 4px; padding-left: 18px; }
-    .alert-tag { background: #262626; color: #ffffff; padding: 4px 9px; border-radius: 3px; font-size: 11px; font-weight: 700; white-space: nowrap; }
-    .search-bar { background: #f7f7f7; border: 1px solid #737373; padding: 9px 14px; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; font-size: 12.5px; color: #000000; }
-    .search-bar input, .search-bar select { padding: 5px 9px; border: 1px solid #595959; background: #ffffff; color: #000000; font-size: 12px; }
+    .alert-tag { background: #8c2d19; color: #ffffff; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+    .search-bar { background: #ffffff; border: 1px solid #cbd5e1; padding: 9px 14px; border-radius: 4px; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; font-size: 12.5px; color: #0f172a; }
+    .search-bar input, .search-bar select { padding: 5px 9px; border: 1px solid #94a3b8; border-radius: 4px; background: #ffffff; color: #0f172a; font-size: 12px; }
     .search-bar input { flex: 1; }
-    .btn-filter { background: #262626; color: #ffffff; border: 1px solid #000000; padding: 6px 13px; font-size: 12px; font-weight: 700; cursor: pointer; }
-    table { width: 100%; border-collapse: collapse; background: #ffffff; border: 1px solid #000000; }
-    th { background: #d9d9d9; color: #000000; text-align: left; padding: 9px 12px; font-size: 12px; font-weight: 700; border: 1px solid #000000; }
-    td { padding: 9px 12px; border: 1px solid #737373; font-size: 12.5px; color: #000000; }
-    tr:nth-child(even) td { background: #f9f9f9; }
-    .triaje-tag { font-weight: 700; color: #000000; background: #e6e6e6; padding: 2px 7px; border: 1px solid #595959; font-size: 11.5px; }
-    .footer-meta { margin-top: 16px; background: #f2f2f2; border: 1px solid #595959; color: #000000; padding: 8px 14px; display: flex; justify-content: space-between; font-family: Consolas, monospace; font-size: 11.5px; font-weight: 600; }
+    .btn-filter { background: #2c5282; color: #ffffff; border: 1px solid #1a365d; padding: 6px 13px; border-radius: 4px; font-size: 12px; font-weight: 700; cursor: pointer; }
+    table { width: 100%; border-collapse: collapse; background: #ffffff; border: 1px solid #94a3b8; }
+    th { background: #162a45; color: #ffffff; text-align: left; padding: 9px 12px; font-size: 12px; font-weight: 700; border: 1px solid #162a45; }
+    td { padding: 9px 12px; border: 1px solid #cbd5e1; font-size: 12.5px; color: #111827; }
+    tr:nth-child(even) td { background: #f8fafc; }
+    .badge-ii { background: #fdeded; color: #7f1d1d; border: 1px solid #d8a8a8; padding: 2px 8px; border-radius: 3px; font-weight: 700; font-size: 11.5px; }
+    .badge-iii { background: #fef6e6; color: #78350f; border: 1px solid #e2c89d; padding: 2px 8px; border-radius: 3px; font-weight: 700; font-size: 11.5px; }
+    .badge-iv { background: #eaf5ee; color: #14532d; border: 1px solid #a9d1b8; padding: 2px 8px; border-radius: 3px; font-weight: 700; font-size: 11.5px; }
+    .badge-v { background: #ebf3fa; color: #1e3a8a; border: 1px solid #adc6e5; padding: 2px 8px; border-radius: 3px; font-weight: 700; font-size: 11.5px; }
+    .footer-meta { margin-top: 16px; background: #e2e8f0; border: 1px solid #94a3b8; color: #0f172a; padding: 8px 14px; border-radius: 4px; display: flex; justify-content: space-between; font-family: Consolas, monospace; font-size: 11.5px; font-weight: 600; }
   </style>
 </head>
 <body>
@@ -65,14 +69,14 @@
       <a href="/auth/login/" class="nav-item">Autenticación Segura</a>
       <div class="nav-sec">Variabilidad (SPL)</div>
       {% if enable_reports %}
-        <a href="{% url 'reports:export_pdf' %}" class="nav-item opt-on">Reportes PDF / CSV [Activo]</a>
+        <a href="{% url 'reports:export_pdf' %}" class="nav-item opt-on">Reportes PDF / CSV</a>
       {% else %}
-        <span class="nav-item opt-off">Reportes PDF / CSV [Inactivo]</span>
+        <span class="nav-item opt-off">Reportes PDF / CSV</span>
       {% endif %}
       {% if enable_notifications %}
-        <a href="{% url 'notifications:panel_alertas' %}" class="nav-item opt-on">Alertas Clínicas [Activo]</a>
+        <a href="{% url 'notifications:panel_alertas' %}" class="nav-item opt-on">Alertas Clínicas</a>
       {% else %}
-        <span class="nav-item opt-off">Alertas Clínicas [Inactivo]</span>
+        <span class="nav-item opt-off">Alertas Clínicas</span>
       {% endif %}
     </div>
     <div class="content">
@@ -80,17 +84,17 @@
         <div class="top-row">
           <div>
             <h2>Panel de Control de Atenciones Médicas</h2>
-            <p style="font-size:12px; color:#262626; margin-top:3px;">
+            <p style="font-size:12px; color:#334155; margin-top:3px;">
               Equipo SPL UNEMI: <strong>Quinteros E., Lescano G., Guerrero D., Barboza K.</strong> — Centro de Salud Institucional
             </p>
           </div>
           <div class="btn-group">
             {% if enable_reports %}
-              <span class="status-chip">ENABLE_REPORTS = True (Módulo Activo)</span>
-              <a href="{% url 'reports:export_pdf' %}" class="btn btn-pdf">Exportar PDF</a>
-              <a href="{% url 'reports:export_csv' %}" class="btn btn-csv">Descargar CSV</a>
+              <span class="status-chip-on">ENABLE_REPORTS = True (apps.reports activo)</span>
+              <a href="{% url 'reports:export_pdf' %}" class="btn btn-pdf">Exportar PDF Institucional</a>
+              <a href="{% url 'reports:export_csv' %}" class="btn btn-csv">Descargar CSV Estadístico</a>
             {% else %}
-              <span class="status-chip">ENABLE_REPORTS = False (Módulo Inactivo)</span>
+              <span class="status-chip-off">ENABLE_REPORTS = False (Módulo oculto)</span>
             {% endif %}
           </div>
         </div>
@@ -98,7 +102,7 @@
         {% if enable_notifications %}
         <div class="alert-box">
           <div>
-            <strong>MÓDULO DE NOTIFICACIONES CLÍNICAS (apps.notifications — ENABLE_NOTIFICATIONS = True)</strong>
+            <strong style="color:#7f1d1d;">MÓDULO DE NOTIFICACIONES CLÍNICAS (apps.notifications — ENABLE_NOTIFICATIONS = True)</strong>
             <ul>
               <li><strong>[ALR-01]</strong> Paciente Sgto. Carlos Mendoza (Triaje Nivel II) requiere reevaluación médica en 15 minutos.</li>
               <li><strong>[ALR-02]</strong> Stock de insumos de emergencia al 82% en el Centro de Salud Institucional.</li>
@@ -114,9 +118,9 @@
           <input type="text" name="q" value="{{ q }}" placeholder="Filtrar por paciente o código de ficha (ej. ATN-2026-0891)...">
           <select name="triaje">
             <option value="">Nivel Triaje: Todos</option>
-            <option value="II">Nivel II - Prioridad Alta</option>
-            <option value="III">Nivel III - Prioridad Media</option>
-            <option value="IV">Nivel IV - Estándar</option>
+            <option value="II">Nivel II — Urgencia</option>
+            <option value="III">Nivel III — Observación</option>
+            <option value="IV">Nivel IV — Estándar</option>
           </select>
           <select name="unidad">
             <option value="">Unidad: Distrito Milagro</option>
@@ -142,7 +146,7 @@
               <td><strong>{{ a.ficha }}</strong></td>
               <td>{{ a.paciente }}</td>
               <td>{{ a.area }}</td>
-              <td><span class="triaje-tag">{{ a.triaje }}</span></td>
+              <td><span class="{{ a.triaje_clase }}">{{ a.triaje }}</span></td>
               <td>{{ a.profesional }}</td>
               <td><strong>{{ a.estado }}</strong></td>
             </tr>
