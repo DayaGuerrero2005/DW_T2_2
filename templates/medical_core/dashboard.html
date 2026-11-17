@@ -6,42 +6,42 @@
   <title>MediSPL-UNEMI | Panel de Triaje ({{ variant_code }})</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f1f5f9; color: #0f172a; }
-    .navbar { background: #1b365d; color: #ffffff; padding: 14px 26px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #ea580c; }
-    .brand { font-size: 17px; font-weight: 700; letter-spacing: 0.2px; }
-    .brand span { color: #fdba74; font-size: 13.5px; font-weight: 600; margin-left: 8px; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #ffffff; color: #000000; }
+    .navbar { background: #262626; color: #ffffff; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #000000; }
+    .brand { font-size: 15.5px; font-weight: 700; color: #ffffff; }
+    .brand span { color: #d4d4d4; font-size: 13px; font-weight: 400; margin-left: 8px; }
     .nav-badges { display: flex; align-items: center; gap: 10px; }
-    .variant-pill { background: #ea580c; color: #fff; padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; }
-    .layout { display: grid; grid-template-columns: 245px 1fr; min-height: calc(100vh - 55px); }
-    .sidebar { background: #0f172a; color: #cbd5e1; padding: 20px 16px; display: flex; flex-direction: column; gap: 8px; }
-    .nav-sec { font-size: 11px; text-transform: uppercase; color: #94a3b8; font-weight: 700; margin-top: 10px; margin-bottom: 4px; letter-spacing: 0.5px; }
-    .nav-item { padding: 9px 12px; border-radius: 6px; font-size: 13px; background: #1e293b; color: #f8fafc; text-decoration: none; display: block; font-weight: 500; }
-    .nav-item.active { background: #2563eb; font-weight: 700; }
-    .nav-item.opt-on { background: #065f46; border-left: 4px solid #34d399; color: #ecfdf5; font-weight: 600; }
-    .nav-item.opt-off { background: #1e293b; color: #64748b; text-decoration: line-through; opacity: 0.75; }
-    .content { padding: 24px 30px; display: flex; flex-direction: column; justify-content: space-between; }
-    .top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 2px solid #cbd5e1; gap: 16px; }
-    .status-chip-on { background: #dcfce7; border: 1px solid #22c55e; color: #166534; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; }
-    .status-chip-off { background: #fee2e2; border: 1px solid #ef4444; color: #991b1b; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; }
-    .btn-group { display: flex; align-items: center; gap: 10px; }
-    .btn { padding: 9px 15px; border-radius: 6px; text-decoration: none; color: #fff; font-size: 12.5px; font-weight: 700; display: inline-block; }
-    .btn-pdf { background: #1b365d; }
-    .btn-csv { background: #059669; }
-    .alert-box { background: #fff7ed; border-left: 5px solid #ea580c; border: 1px solid #fdba74; padding: 12px 18px; border-radius: 6px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #7c2d12; }
+    .variant-pill { background: #e5e5e5; color: #000000; padding: 4px 10px; border-radius: 3px; font-size: 11.5px; font-weight: 700; border: 1px solid #000000; }
+    .notif-pill-on { background: #ffffff; color: #000000; padding: 4px 10px; border-radius: 3px; font-size: 11.5px; font-weight: 700; border: 1px solid #000000; }
+    .notif-pill-off { background: #404040; color: #d4d4d4; padding: 4px 10px; border-radius: 3px; font-size: 11.5px; }
+    .layout { display: grid; grid-template-columns: 230px 1fr; min-height: calc(100vh - 50px); }
+    .sidebar { background: #f2f2f2; color: #000000; padding: 18px 14px; display: flex; flex-direction: column; gap: 6px; border-right: 1px solid #8c8c8c; }
+    .nav-sec { font-size: 11px; text-transform: uppercase; color: #000000; font-weight: 700; margin-top: 10px; margin-bottom: 4px; border-bottom: 1px solid #a6a6a6; padding-bottom: 3px; }
+    .nav-item { padding: 8px 10px; border-radius: 3px; font-size: 12.5px; background: #ffffff; color: #000000; text-decoration: none; display: block; border: 1px solid #bfbfbf; }
+    .nav-item.active { background: #d9d9d9; color: #000000; font-weight: 700; border: 1px solid #000000; }
+    .nav-item.opt-on { background: #e6e6e6; border-left: 4px solid #000000; color: #000000; font-weight: 700; }
+    .nav-item.opt-off { background: #f5f5f5; color: #737373; text-decoration: line-through; border: 1px dashed #bfbfbf; }
+    .content { padding: 20px 26px; display: flex; flex-direction: column; justify-content: space-between; background: #ffffff; }
+    .top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid #000000; gap: 14px; }
+    .top-row h2 { font-size: 17px; font-weight: 700; color: #000000; }
+    .status-chip { background: #f2f2f2; border: 1px solid #000000; color: #000000; padding: 6px 11px; border-radius: 3px; font-size: 11.5px; font-weight: 700; }
+    .btn-group { display: flex; align-items: center; gap: 8px; }
+    .btn { padding: 7px 13px; border-radius: 3px; text-decoration: none; font-size: 12px; font-weight: 700; display: inline-block; border: 1px solid #000000; }
+    .btn-pdf { background: #262626; color: #ffffff; }
+    .btn-csv { background: #e5e5e5; color: #000000; }
+    .alert-box { background: #f2f2f2; border-left: 4px solid #000000; border-top: 1px solid #737373; border-right: 1px solid #737373; border-bottom: 1px solid #737373; padding: 10px 16px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; color: #000000; }
     .alert-box ul { margin-top: 4px; padding-left: 18px; }
-    .alert-tag { background: #ea580c; color: #fff; padding: 4px 10px; border-radius: 5px; font-size: 11.5px; font-weight: 700; white-space: nowrap; }
-    .search-bar { background: #ffffff; border: 1px solid #cbd5e1; padding: 10px 16px; border-radius: 6px; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; font-size: 13px; }
-    .search-bar input, .search-bar select { padding: 6px 10px; border: 1px solid #94a3b8; border-radius: 5px; font-size: 12.5px; }
+    .alert-tag { background: #262626; color: #ffffff; padding: 4px 9px; border-radius: 3px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+    .search-bar { background: #f7f7f7; border: 1px solid #737373; padding: 9px 14px; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; font-size: 12.5px; color: #000000; }
+    .search-bar input, .search-bar select { padding: 5px 9px; border: 1px solid #595959; background: #ffffff; color: #000000; font-size: 12px; }
     .search-bar input { flex: 1; }
-    .btn-filter { background: #ea580c; color: #fff; border: none; padding: 7px 14px; border-radius: 5px; font-size: 12.5px; font-weight: 700; cursor: pointer; }
-    table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #cbd5e1; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-    th { background: #1b365d; color: #fff; text-align: left; padding: 11px 14px; font-size: 12.5px; }
-    td { padding: 11px 14px; border-bottom: 1px solid #e2e8f0; font-size: 13px; }
-    .badge-orange { background: #ffedd5; color: #c2410c; padding: 3px 9px; border-radius: 4px; font-weight: 700; font-size: 11.5px; }
-    .badge-green { background: #dcfce7; color: #15803d; padding: 3px 9px; border-radius: 4px; font-weight: 700; font-size: 11.5px; }
-    .badge-yellow { background: #fef9c3; color: #a16207; padding: 3px 9px; border-radius: 4px; font-weight: 700; font-size: 11.5px; }
-    .badge-blue { background: #dbeafe; color: #1d4ed8; padding: 3px 9px; border-radius: 4px; font-weight: 700; font-size: 11.5px; }
-    .footer-meta { margin-top: 20px; background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; padding: 10px 16px; border-radius: 6px; display: flex; justify-content: space-between; font-family: Consolas, monospace; font-size: 12px; }
+    .btn-filter { background: #262626; color: #ffffff; border: 1px solid #000000; padding: 6px 13px; font-size: 12px; font-weight: 700; cursor: pointer; }
+    table { width: 100%; border-collapse: collapse; background: #ffffff; border: 1px solid #000000; }
+    th { background: #d9d9d9; color: #000000; text-align: left; padding: 9px 12px; font-size: 12px; font-weight: 700; border: 1px solid #000000; }
+    td { padding: 9px 12px; border: 1px solid #737373; font-size: 12.5px; color: #000000; }
+    tr:nth-child(even) td { background: #f9f9f9; }
+    .triaje-tag { font-weight: 700; color: #000000; background: #e6e6e6; padding: 2px 7px; border: 1px solid #595959; font-size: 11.5px; }
+    .footer-meta { margin-top: 16px; background: #f2f2f2; border: 1px solid #595959; color: #000000; padding: 8px 14px; display: flex; justify-content: space-between; font-family: Consolas, monospace; font-size: 11.5px; font-weight: 600; }
   </style>
 </head>
 <body>
@@ -50,29 +50,29 @@
     <div class="nav-badges">
       <span class="variant-pill">{{ variant_code }}</span>
       {% if enable_notifications %}
-        <span style="background:#dc2626; padding:5px 12px; border-radius:16px; font-size:12px; font-weight:700;">ALERTA ACTIVA (2)</span>
+        <span class="notif-pill-on">Notificaciones: ACTIVAS (2)</span>
       {% else %}
-        <span style="background:#334155; color:#cbd5e1; padding:5px 12px; border-radius:16px; font-size:12px;">Notificaciones: DESACTIVADAS</span>
+        <span class="notif-pill-off">Notificaciones: INACTIVAS</span>
       {% endif %}
     </div>
   </div>
   <div class="layout">
     <div class="sidebar">
-      <div class="nav-sec">Core Apps (Comunes)</div>
+      <div class="nav-sec">Activos Base (Core)</div>
       <a href="{% url 'dashboard_atenciones' %}" class="nav-item active">Triaje y Atenciones</a>
       <a href="/usuarios/" class="nav-item">Usuarios y Roles (RBAC)</a>
       <a href="/archivos/upload/" class="nav-item">Archivos Clínicos</a>
       <a href="/auth/login/" class="nav-item">Autenticación Segura</a>
       <div class="nav-sec">Variabilidad (SPL)</div>
       {% if enable_reports %}
-        <a href="{% url 'reports:export_pdf' %}" class="nav-item opt-on">Reportes PDF / CSV</a>
+        <a href="{% url 'reports:export_pdf' %}" class="nav-item opt-on">Reportes PDF / CSV [Activo]</a>
       {% else %}
-        <span class="nav-item opt-off">Reportes PDF / CSV</span>
+        <span class="nav-item opt-off">Reportes PDF / CSV [Inactivo]</span>
       {% endif %}
       {% if enable_notifications %}
-        <a href="{% url 'notifications:panel_alertas' %}" class="nav-item opt-on">Alertas Clínicas</a>
+        <a href="{% url 'notifications:panel_alertas' %}" class="nav-item opt-on">Alertas Clínicas [Activo]</a>
       {% else %}
-        <span class="nav-item opt-off">Alertas Clínicas</span>
+        <span class="nav-item opt-off">Alertas Clínicas [Inactivo]</span>
       {% endif %}
     </div>
     <div class="content">
@@ -80,17 +80,17 @@
         <div class="top-row">
           <div>
             <h2>Panel de Control de Atenciones Médicas</h2>
-            <p style="font-size:12.5px; color:#475569; margin-top:3px;">
+            <p style="font-size:12px; color:#262626; margin-top:3px;">
               Equipo SPL UNEMI: <strong>Quinteros E., Lescano G., Guerrero D., Barboza K.</strong> — Centro de Salud Institucional
             </p>
           </div>
           <div class="btn-group">
             {% if enable_reports %}
-              <span class="status-chip-on">ENABLE_REPORTS = True (apps.reports activo)</span>
-              <a href="{% url 'reports:export_pdf' %}" class="btn btn-pdf">Exportar PDF Institucional</a>
-              <a href="{% url 'reports:export_csv' %}" class="btn btn-csv">Descargar CSV Estadístico</a>
+              <span class="status-chip">ENABLE_REPORTS = True (Módulo Activo)</span>
+              <a href="{% url 'reports:export_pdf' %}" class="btn btn-pdf">Exportar PDF</a>
+              <a href="{% url 'reports:export_csv' %}" class="btn btn-csv">Descargar CSV</a>
             {% else %}
-              <span class="status-chip-off">ENABLE_REPORTS = False (Módulo de exportación oculto)</span>
+              <span class="status-chip">ENABLE_REPORTS = False (Módulo Inactivo)</span>
             {% endif %}
           </div>
         </div>
@@ -100,11 +100,11 @@
           <div>
             <strong>MÓDULO DE NOTIFICACIONES CLÍNICAS (apps.notifications — ENABLE_NOTIFICATIONS = True)</strong>
             <ul>
-              <li>[ALR-01] Paciente Sgto. Carlos Mendoza (Triaje Nivel II - Naranja) requiere reevaluación médica en 15 minutos.</li>
-              <li>[ALR-02] Stock de insumos de emergencia al 82% en el Centro de Salud Institucional.</li>
+              <li><strong>[ALR-01]</strong> Paciente Sgto. Carlos Mendoza (Triaje Nivel II) requiere reevaluación médica en 15 minutos.</li>
+              <li><strong>[ALR-02]</strong> Stock de insumos de emergencia al 82% en el Centro de Salud Institucional.</li>
             </ul>
           </div>
-          <span class="alert-tag">Tiempo Real Activo</span>
+          <span class="alert-tag">Monitoreo Activo</span>
         </div>
         {% endif %}
 
@@ -114,9 +114,9 @@
           <input type="text" name="q" value="{{ q }}" placeholder="Filtrar por paciente o código de ficha (ej. ATN-2026-0891)...">
           <select name="triaje">
             <option value="">Nivel Triaje: Todos</option>
-            <option value="II">Nivel II - Naranja</option>
-            <option value="III">Nivel III - Amarillo</option>
-            <option value="IV">Nivel IV - Verde</option>
+            <option value="II">Nivel II - Prioridad Alta</option>
+            <option value="III">Nivel III - Prioridad Media</option>
+            <option value="IV">Nivel IV - Estándar</option>
           </select>
           <select name="unidad">
             <option value="">Unidad: Distrito Milagro</option>
@@ -142,9 +142,9 @@
               <td><strong>{{ a.ficha }}</strong></td>
               <td>{{ a.paciente }}</td>
               <td>{{ a.area }}</td>
-              <td><span class="{{ a.triaje_clase }}">{{ a.triaje }}</span></td>
+              <td><span class="triaje-tag">{{ a.triaje }}</span></td>
               <td>{{ a.profesional }}</td>
-              <td>{{ a.estado }}</td>
+              <td><strong>{{ a.estado }}</strong></td>
             </tr>
             {% endfor %}
           </tbody>
