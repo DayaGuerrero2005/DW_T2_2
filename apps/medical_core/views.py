@@ -4,18 +4,64 @@ from django.conf import settings
 def dashboard_atenciones(request):
     """
     Vista principal del núcleo clínico. Evalúa dinámicamente las banderas
-    ENABLE_REPORTS y ENABLE_NOTIFICATIONS definidas en settings.py / config_product.py.
+    ENABLE_REPORTS, ENABLE_NOTIFICATIONS y ENABLE_ADVANCED_SEARCH definidas
+    en settings.py / config_product.py.
     """
+    atenciones = [
+        {
+            'ficha': 'ATN-2026-0891',
+            'paciente': 'Sgto. Carlos Mendoza V.',
+            'area': 'Emergencias / Trauma',
+            'triaje': 'Nivel II - Naranja',
+            'triaje_clase': 'badge-orange',
+            'profesional': 'TEM. Dayanara Guerrero',
+            'estado': 'Estabilizado',
+        },
+        {
+            'ficha': 'ATN-2026-0892',
+            'paciente': 'Cbos. Andrea Villacís R.',
+            'area': 'Consulta General',
+            'triaje': 'Nivel IV - Verde',
+            'triaje_clase': 'badge-green',
+            'profesional': 'TEM. Eduardo Quinteros',
+            'estado': 'Alta Médica',
+        },
+        {
+            'ficha': 'ATN-2026-0893',
+            'paciente': 'Tnte. Roberto Salazar P.',
+            'area': 'Cardiología / Control',
+            'triaje': 'Nivel III - Amarillo',
+            'triaje_clase': 'badge-yellow',
+            'profesional': 'Dra. Gleyder Lescano',
+            'estado': 'En Observación',
+        },
+        {
+            'ficha': 'ATN-2026-0894',
+            'paciente': 'Subt. Sofía Zambrano L.',
+            'area': 'Salud Ocupacional',
+            'triaje': 'Nivel V - Azul',
+            'triaje_clase': 'badge-blue',
+            'profesional': 'Dr. Kevin Barboza',
+            'estado': 'Completado',
+        },
+    ]
+
+    q = request.GET.get('q', '').strip()
+    if q and getattr(settings, 'ENABLE_ADVANCED_SEARCH', False):
+        atenciones = [
+            a for a in atenciones
+            if q.lower() in a['paciente'].lower() or q.lower() in a['ficha'].lower()
+        ]
+
     context = {
+        'variant_code': getattr(settings, 'VARIANT_CODE', 'PRODUCT_B'),
         'variant_name': getattr(settings, 'VARIANT_NAME', 'Variante A'),
         'enable_reports': settings.ENABLE_REPORTS,
         'enable_notifications': getattr(settings, 'ENABLE_NOTIFICATIONS', False),
-        'atenciones': [
-            {'ficha': 'ATN-2026-0891', 'paciente': 'Sgto. Carlos Mendoza V.', 'area': 'Emergencias / Trauma', 'triaje': 'Nivel II - Naranja', 'profesional': 'TEM. Dayanara Guerrero', 'estado': 'Estabilizado'},
-            {'ficha': 'ATN-2026-0892', 'paciente': 'Cbos. Andrea Villacís R.', 'area': 'Consulta General', 'triaje': 'Nivel IV - Verde', 'profesional': 'TEM. Dayanara Guerrero', 'estado': 'Alta Médica'},
-            {'ficha': 'ATN-2026-0893', 'paciente': 'Tnte. Roberto Salazar P.', 'area': 'Cardiología / Control', 'triaje': 'Nivel III - Amarillo', 'profesional': 'Dr. Marcos Cevallos', 'estado': 'En Observación'},
-            {'ficha': 'ATN-2026-0894', 'paciente': 'Subt. Sofía Zambrano L.', 'area': 'Salud Ocupacional', 'triaje': 'Nivel V - Azul', 'profesional': 'TEM. Dayanara Guerrero', 'estado': 'Completado'},
-        ]
+        'enable_advanced_search': getattr(settings, 'ENABLE_ADVANCED_SEARCH', False),
+        'optional_apps_count': len(getattr(settings, 'OPTIONAL_APPS', [])),
+        'atenciones': atenciones,
+        'q': q,
     }
     if settings.ENABLE_REPORTS:
         context['formatos_exportacion'] = ['PDF Institucional', 'CSV Estadístico', 'Ficha HL7/JSON']

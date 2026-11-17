@@ -14,10 +14,18 @@ ALLOWED_HOSTS = ['*']
 ACTIVE_VARIANT_KEY = os.environ.get('ACTIVE_PRODUCT_VARIANT', 'PRODUCT_B')
 ACTIVE_PRODUCT = get_product_config(ACTIVE_VARIANT_KEY)
 
-ENABLE_REPORTS = ACTIVE_PRODUCT['ENABLE_REPORTS']
+# Permite sobrescribir ENABLE_REPORTS individualmente en la Sesión 2 si se define en entorno
+if 'ENABLE_REPORTS_OVERRIDE' in os.environ:
+    ENABLE_REPORTS = os.environ['ENABLE_REPORTS_OVERRIDE'].lower() in ('true', '1', 'yes')
+    VARIANT_CODE = 'SESIÓN 2 (ON)' if ENABLE_REPORTS else 'SESIÓN 2 (OFF)'
+    VARIANT_NAME = f'Modularización Sesión 2 — ENABLE_REPORTS = {ENABLE_REPORTS}'
+else:
+    ENABLE_REPORTS = ACTIVE_PRODUCT['ENABLE_REPORTS']
+    VARIANT_CODE = ACTIVE_PRODUCT['VARIANT_CODE']
+    VARIANT_NAME = ACTIVE_PRODUCT['VARIANT_NAME']
+
 ENABLE_NOTIFICATIONS = ACTIVE_PRODUCT['ENABLE_NOTIFICATIONS']
 ENABLE_ADVANCED_SEARCH = ACTIVE_PRODUCT.get('ENABLE_ADVANCED_SEARCH', False)
-VARIANT_NAME = ACTIVE_PRODUCT['VARIANT_NAME']
 
 # Activos del núcleo (Core Assets) presentes en todas las variantes
 CORE_APPS = [
@@ -55,6 +63,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'medispl_unemi.urls'
+WSGI_APPLICATION = 'medispl_unemi.wsgi.application'
 
 TEMPLATES = [
     {
